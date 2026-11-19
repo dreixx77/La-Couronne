@@ -4,9 +4,9 @@ const SITE_CONFIG = {
   contactEmail: "", // Example: "hello@yourdomain.com"
   links: {
     ecommerce: "",
-    facebook: "",
-    instagram: "",
-    tiktok: ""
+    facebook: "https://www.facebook.com/share/1CnefY3uRi/",
+    instagram: "https://www.instagram.com/la_couronne143?evlk=YWlhdTFpYmZudWV4",
+    tiktok: "https://www.tiktok.com/@la.couronne2026?_r=1&_t=ZS-9BWS2zkZSGT"
   }
 };
 
@@ -24,26 +24,7 @@ document.querySelectorAll(".nav-link").forEach(link => {
   });
 });
 
-// Directional slide-in animations as content enters the viewport.
-// The layout determines the direction, while grouped cards enter with a soft stagger.
-document.querySelectorAll(".purpose-card").forEach((el, index) => {
-  el.dataset.reveal = index % 2 === 0 ? "left" : "right";
-});
-document.querySelectorAll(".value-item").forEach((el, index) => {
-  el.dataset.reveal = index % 2 === 0 ? "up" : "right";
-  el.style.transitionDelay = `${(index % 5) * 90}ms`;
-});
-document.querySelector(".product-image")?.setAttribute("data-reveal", "left");
-document.querySelector(".product-copy")?.setAttribute("data-reveal", "right");
-document.querySelector(".contact-copy")?.setAttribute("data-reveal", "left");
-document.querySelector(".contact-form")?.setAttribute("data-reveal", "right");
-document.querySelector(".hero-visual")?.setAttribute("data-reveal", "right");
-
-// Stagger nearby reveal elements slightly for a more polished sequence.
-document.querySelectorAll(".purpose-grid .reveal").forEach((el, index) => {
-  el.style.transitionDelay = `${index * 130}ms`;
-});
-
+// Smooth reveal animations as sections enter the viewport.
 const revealObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -51,8 +32,7 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.14, rootMargin: "0px 0px -45px 0px" });
-
+}, { threshold: 0.12 });
 document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
 // Highlight the current section in the navigation.
